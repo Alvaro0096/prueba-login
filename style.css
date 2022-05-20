@@ -1,0 +1,29 @@
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container label{
+    font-size: 1.2rem;
+}
+
+.container form{
+    display: flex;
+    flex-direction: column;
+}
+
+.container input{
+    font-size: 1.2rem;
+    padding: .5rem;
+}
