@@ -3,14 +3,19 @@ let username = document.getElementById('username');
 let pass = document.getElementById('password');
 
 let formData = new FormData();
-formData.append('username', `${name.value}`);
-formData.append('password', `${pass.value}`);
+formData.append('username', username);
+formData.append('password', password);
+
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    sendData();
+});
 
 const sendHttpRequest = (method, url, data) => {
     return fetch(url, {
         method: method,
-        body: JSON.stringify(data),
-        headers: data ? {'Content-Type' : 'application/json'} : {}
+        body: formData
+        // headers: data ? {'Content-Type' : 'application/json'} : {}
     })
     .then(response => {
         if(response.status >= 400){ 
@@ -32,10 +37,7 @@ const sendHttpRequest = (method, url, data) => {
 // }
 
 const sendData = () => {
-    sendHttpRequest('POST', 'http://localapps.servegame.com/registerandlogin/register.controller.php',{
-        email: "eve.holt@reqres.in",
-        password: "pistol"
-    })
+    sendHttpRequest('POST', 'http://localapps.servegame.com/registerandlogin/register.controller.php')
     .then(responseData => {
         console.log(responseData);
     })
@@ -44,7 +46,3 @@ const sendData = () => {
     })
 }
 
-form.addEventListener('submit', e => {
-    e.preventDefault();
-    sendData();
-})
