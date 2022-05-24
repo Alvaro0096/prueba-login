@@ -1,25 +1,27 @@
-const getBtn = document.getElementById('getData');
-const postBtn = document.getElementById('postData');
+// const getData = () => {
+//     axios.get('https://reqres.in/api/users')
+//     .then(response => {
+//         console.log(response);
+//     })
+// }
 
-const getData = () => {
-    axios.get('https://reqres.in/api/users')
-    .then(response => {
-        console.log(response);
-    })
-}
+let userName = document.getElementById('username');
+let pass = document.getElementById('password');
 
 const sendData = () => {
-    axios.post('https://reqres.in/api/register', {
-        email: "eve.holt@reqres.in",
-        // password: "pistol"
+    axios.post('http://localapps.servegame.com/registerandlogin/register.controller.php', {
+        username: `${userName.value}`,
+        password: `${pass.value}`
     })
-    .then(response => {
-        console.log(response);
-    })
+    .then(response => response)
     .catch(error => {
         console.log(error, error.response);
     })
-}
+};
 
-getBtn.addEventListener('click', getData);
-postBtn.addEventListener('click', sendData);
+const form = document.getElementById('register-form');
+
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    sendData();
+});

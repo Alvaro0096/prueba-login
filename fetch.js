@@ -1,5 +1,10 @@
-const getBtn = document.getElementById('getData');
-const postBtn = document.getElementById('postData');
+const form = document.getElementById('register-form');
+let username = document.getElementById('username');
+let pass = document.getElementById('password');
+
+let formData = new FormData();
+formData.append('username', `${name.value}`);
+formData.append('password', `${pass.value}`);
 
 const sendHttpRequest = (method, url, data) => {
     return fetch(url, {
@@ -19,17 +24,17 @@ const sendHttpRequest = (method, url, data) => {
     });
 }
 
-const getData = () => {
-    sendHttpRequest('GET', 'https://reqres.in/api/users')
-    .then(responseData => {
-        console.log(responseData);
-    })
-}
+// const getData = () => {
+//     sendHttpRequest('GET', 'https://reqres.in/api/users')
+//     .then(responseData => {
+//         console.log(responseData);
+//     })
+// }
 
 const sendData = () => {
-    sendHttpRequest('POST', 'https://reqres.in/api/register',{
+    sendHttpRequest('POST', 'http://localapps.servegame.com/registerandlogin/register.controller.php',{
         email: "eve.holt@reqres.in",
-        // password: "pistol"
+        password: "pistol"
     })
     .then(responseData => {
         console.log(responseData);
@@ -39,5 +44,7 @@ const sendData = () => {
     })
 }
 
-getBtn.addEventListener('click', getData);
-postBtn.addEventListener('click', sendData);
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    sendData();
+})
